@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Engineer Roadmap</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@300;400;500&display=swap');
+:root{
+  --bg:#110f0d;--bg2:#1c1916;--bg3:#252118;--faint:#2e2a24;
+  --text:#ede9e1;--muted:#7a7266;--border2:rgba(255,245,230,0.11);
+  --teal:#7fcfaa;--td:rgba(127,207,170,0.08);--tb:rgba(127,207,170,0.22);
+  --amber:#d4925a;--ad:rgba(212,146,90,0.08);--ab:rgba(212,146,90,0.22);
+  --purple:#a694d4;--pd:rgba(166,148,212,0.08);--pb:rgba(166,148,212,0.22);
+  --blue:#6fa8d4;--bd:rgba(111,168,212,0.08);--bb:rgba(111,168,212,0.22);
+  --coral:#d46f6f;--cd:rgba(212,111,111,0.08);--cb:rgba(212,111,111,0.22);
+  --green:#7ab882;--gd:rgba(122,184,130,0.08);--gb:rgba(122,184,130,0.22);
+  --gold:#d4aa5a;--god:rgba(212,170,90,0.09);--gob:rgba(212,170,90,0.28);
+  --miss:#d46060;--md:rgba(212,96,96,0.08);--mb:rgba(212,96,96,0.28);
+  --hw:#d4935a;--hwd:rgba(212,147,90,0.08);--hwb:rgba(212,147,90,0.28);
+  --dg:#7ab882;--dy:#d4aa5a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-size:13px;padding:24px 14px 60px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto}
+a{text-decoration:none;color:inherit}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+h1{font-size:20px;font-weight:300;letter-spacing:-.02em;margin-bottom:3px}
+h1 b{font-weight:500}
+.hsub{font-size:11px;color:var(--muted);margin-bottom:18px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:8px 12px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;margin-bottom:20px}
+.leg{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+.ld{width:7px;height:7px;border-radius:50%}
+.ls{width:7px;height:7px;border-radius:2px;border:1.5px dashed}
+.tier-hdr{display:flex;align-items:center;gap:8px;margin:22px 0 10px}
+.tier-name{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap}
+.tier-line{flex:1;height:0.5px;background:var(--faint)}
+.skills-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.skill{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:20px;border:0.5px solid;font-size:11px;cursor:pointer;user-select:none;transition:opacity .12s,transform .1s}
+.skill:hover{opacity:.8;transform:scale(1.03)}
+.skill.active{outline:2px solid currentColor;outline-offset:2px}
+.skill.miss{border-style:dashed}
+.miss-b{font-size:8px;font-family:'JetBrains Mono',monospace;background:var(--miss);color:#fff;border-radius:3px;padding:1px 4px;margin-left:3px}
+.s-gray{background:var(--bg3);border-color:var(--border2);color:var(--muted)}
+.s-teal{background:var(--td);border-color:var(--tb);color:var(--teal)}
+.s-amber{background:var(--ad);border-color:var(--ab);color:var(--amber)}
+.s-purple{background:var(--pd);border-color:var(--pb);color:var(--purple)}
+.s-blue{background:var(--bd);border-color:var(--bb);color:var(--blue)}
+.s-coral{background:var(--cd);border-color:var(--cb);color:var(--coral)}
+.s-green{background:var(--gd);border-color:var(--gb);color:var(--green)}
+.s-miss{background:var(--md);border-color:var(--mb);color:var(--miss);border-style:dashed}
+.s-hw{background:var(--hwd);border-color:var(--hwb);color:var(--hw)}
+#gpop{display:none;position:fixed;z-index:9999;background:var(--bg2);border:0.5px solid var(--border2);border-radius:10px;padding:12px 14px;width:300px;max-width:calc(100vw - 24px);box-shadow:0 12px 32px rgba(0,0,0,.65)}
+#gpop.show{display:block}
+#gpop-title{font-size:11px;font-weight:500;color:var(--text);margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+#gpop-desc{font-size:10px;color:var(--muted);margin-bottom:9px;line-height:1.55}
+#gpop-links{display:flex;flex-direction:column;gap:4px}
+#gpop-links a{display:flex;align-items:center;gap:6px;padding:5px 9px;border-radius:6px;border:0.5px solid;font-size:10px;font-family:'JetBrains Mono',monospace;transition:opacity .1s}
+#gpop-links a:hover{opacity:.75}
+#gpop-links a.pg{color:var(--dg);background:rgba(122,184,130,0.07);border-color:rgba(122,184,130,0.25)}
+#gpop-links a.py{color:var(--dy);background:rgba(212,170,90,0.07);border-color:rgba(212,170,90,0.25)}
+#gpop-links a.pb{color:var(--teal);background:var(--td);border-color:var(--tb)}
+#gpop-note{font-size:9px;color:var(--miss);margin-top:7px;font-style:italic;display:none}
+#gpop-close{position:absolute;top:8px;right:10px;font-size:14px;color:var(--muted);cursor:pointer;background:none;border:none;padding:0;line-height:1}
+#gpop-close:hover{color:var(--text)}
+.miss-note{background:var(--md);border:0.5px dashed var(--mb);border-radius:7px;padding:8px 12px;margin:6px 0 8px;font-size:10px;color:var(--miss);line-height:1.55}
+.miss-note b{display:block;font-weight:500;margin-bottom:2px}
+.connector{display:block;width:100%;margin:2px 0}
+.pgrid{display:grid;gap:8px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:660px){.g2,.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.g2,.g3{grid-template-columns:1fr}}
+.pc{border-radius:10px;padding:11px 13px;border:0.5px solid;position:relative;transition:transform .15s}
+.pc:hover{transform:translateY(-1px)}
+.pc.big{border-width:1.5px}
+.pc-teal{background:var(--td);border-color:var(--tb)}
+.pc-amber{background:var(--ad);border-color:var(--ab)}
+.pc-purple{background:var(--pd);border-color:var(--pb)}
+.pc-blue{background:var(--bd);border-color:var(--bb)}
+.pc-coral{background:var(--cd);border-color:var(--cb)}
+.pc-green{background:var(--gd);border-color:var(--gb)}
+.pc-hw{background:var(--hwd);border-color:var(--hwb)}
+.pt{font-size:12px;font-weight:500;margin-bottom:3px;line-height:1.3}
+.pc-teal .pt{color:var(--teal)}.pc-amber .pt{color:var(--amber)}.pc-purple .pt{color:var(--purple)}
+.pc-blue .pt{color:var(--blue)}.pc-coral .pt{color:var(--coral)}.pc-green .pt{color:var(--green)}.pc-hw .pt{color:var(--hw)}
+.pd{font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:7px}
+.ptags{display:flex;flex-wrap:wrap;gap:3px}
+.ptag{font-size:9px;padding:2px 6px;border-radius:10px;border:0.5px solid;font-family:'JetBrains Mono',monospace}
+.ptag.pm{border-style:dashed;color:var(--miss);border-color:var(--mb);background:var(--md)}
+.bt{position:absolute;top:-1px;right:10px;font-size:8px;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:0 0 6px 6px;font-weight:500;white-space:nowrap}
+.bt-a{background:#1a0f2a;color:#a694d4;border:0.5px solid var(--pb)}
+.bt-g{background:#0f1a12;color:#7ab882;border:0.5px solid var(--gb)}
+.bt-j{background:#1a1408;color:#d4aa5a;border:0.5px solid var(--gob)}
+.bt-u{background:#0d1525;color:#6fa8d4;border:0.5px solid var(--bb)}
+.bt-all{background:#1a0d14;color:#d47ab0;border:0.5px solid rgba(212,122,176,0.3)}
+.cert-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px}
+.cert-card{background:var(--bd);border:0.5px solid var(--bb);border-radius:8px;padding:9px 12px}
+.cert-card .pt{color:var(--blue)}
+.cert-card .pd{font-size:10px;color:rgba(111,168,212,0.65);margin-bottom:6px}
+@media(max-width:560px){.cert-row{grid-template-columns:1fr}}
+.banner{background:var(--god);border:1px solid var(--gob);border-radius:10px;padding:14px 18px;margin-top:20px}
+.ban-t{font-size:13px;font-weight:500;color:var(--gold);margin-bottom:3px}
+.ban-s{font-size:10px;color:rgba(212,170,90,.7);line-height:1.6}
+.pc-detail{display:none;margin-top:9px;padding-top:9px;border-top:0.5px solid rgba(255,245,230,0.06)}
+.pc-detail.open{display:block}
+.detail-btn{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);background:none;border:0.5px solid rgba(255,245,230,0.08);border-radius:4px;padding:2px 8px;cursor:pointer;margin-top:6px;transition:color .12s}
+.detail-btn:hover{color:var(--text)}
+.detail-section{margin-bottom:7px}
+.detail-section-title{font-size:9px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:3px}
+.detail-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.detail-list li{font-size:10px;color:var(--muted);line-height:1.5;padding-left:10px;position:relative}
+.detail-list li::before{content:"→";position:absolute;left:0;color:var(--faint)}
+.detail-goal{font-size:10px;font-style:italic;line-height:1.5;padding:6px 8px;border-radius:5px;margin-top:4px}
+.pc-teal .detail-goal{background:rgba(127,207,170,0.07);color:var(--teal)}
+.pc-amber .detail-goal{background:rgba(212,146,90,0.07);color:var(--amber)}
+.pc-purple .detail-goal{background:rgba(166,148,212,0.07);color:var(--purple)}
+.pc-blue .detail-goal{background:rgba(111,168,212,0.07);color:var(--blue)}
+.pc-coral .detail-goal{background:rgba(212,111,111,0.07);color:var(--coral)}
+.pc-green .detail-goal{background:rgba(122,184,130,0.07);color:var(--green)}
+.pc-hw .detail-goal{background:rgba(212,147,90,0.07);color:var(--hw)}
+.time-b{font-size:8px;font-family:'JetBrains Mono',monospace;background:rgba(255,245,230,0.06);color:var(--muted);border-radius:3px;padding:1px 5px;margin-left:5px;line-height:1;flex-shrink:0}
+.skill-dot{font-size:10px;margin-left:4px;cursor:pointer;opacity:.45;transition:opacity .12s;flex-shrink:0;line-height:1}
+.skill-dot:hover{opacity:1}
+.skill[data-state="active"] .skill-dot{opacity:1;color:var(--amber)}
+.skill[data-state="done"]{opacity:.5}
+.skill[data-state="done"] .skill-dot{opacity:1;color:var(--dg)}
+.proj-time{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);background:rgba(255,245,230,0.05);border:0.5px solid rgba(255,245,230,0.08);border-radius:3px;padding:1px 6px;margin-left:7px;vertical-align:middle;font-weight:400}
+.proj-status{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:9px;font-family:'JetBrains Mono',monospace;background:none;border:0.5px solid rgba(255,245,230,0.08);border-radius:4px;padding:3px 9px;cursor:pointer;color:var(--muted);transition:color .12s,border-color .12s;line-height:1.4}
+.proj-status:hover{color:var(--text);border-color:rgba(255,245,230,.2)}
+.proj-status.ps-active{color:var(--amber);border-color:var(--ab)}
+.proj-status.ps-done{color:var(--dg);border-color:rgba(122,184,130,.3)}
+.pdash{background:var(--bg2);border:0.5px solid var(--border2);border-radius:10px;padding:12px 16px;margin-bottom:18px}
+.pdash-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px}
+.pdash-phases{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:10px}
+@media(max-width:580px){.pdash-phases{grid-template-columns:repeat(4,1fr)}}
+.ph-block{display:flex;flex-direction:column;gap:3px}
+.ph-lbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+.ph-track{height:5px;background:rgba(255,245,230,0.06);border-radius:3px;overflow:hidden}
+.ph-fill{height:100%;border-radius:3px;width:0%;transition:width .35s ease}
+.ph-cnt{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+.ph1{background:var(--teal)}.ph2{background:var(--amber)}.ph3{background:var(--purple)}
+.ph4{background:var(--blue)}.ph5{background:var(--coral)}.ph6{background:var(--green)}.ph7{background:var(--hw)}
+.pdash-total{display:flex;align-items:center;gap:10px;padding-top:9px;border-top:0.5px solid rgba(255,245,230,0.05)}
+.pdash-tlbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);white-space:nowrap}
+.pdash-ttrack{flex:1;height:6px;background:rgba(255,245,230,0.06);border-radius:3px;overflow:hidden}
+.pdash-tfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--blue) 55%,var(--coral));width:0%;transition:width .35s ease}
+.pdash-pct{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text);min-width:30px;text-align:right;font-weight:500}
+.pdash-pcnt{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--muted);min-width:80px;text-align:right}
+</style>
+</head>
+<body>
+<div id="gpop">
+  <button id="gpop-close">✕</button>
+  <div id="gpop-title"></div>
+  <div id="gpop-desc"></div>
+  <div id="gpop-links"></div>
+  <div id="gpop-note"></div>
+</div>
+<div class="wrap">
+
+<div class="lbl">AI Engineer Roadmap · Skill Tree · v5</div>
+<h1><b>Vollständige Roadmap</b> — Skills, Ressourcen &amp; Projekte</h1>
+<p class="hsub">Klick auf Skill → Ressourcen · ○ auf Skill/Projekt → Fortschritt · wird lokal gespeichert</p>
+
+<div class="legend">
+  <div class="leg"><div class="ld" style="background:var(--teal)"></div>Fundament</div>
+  <div class="leg"><div class="ld" style="background:var(--amber)"></div>Python Stack</div>
+  <div class="leg"><div class="ld" style="background:var(--purple)"></div>ML / PyTorch</div>
+  <div class="leg"><div class="ld" style="background:var(--blue)"></div>LLM</div>
+  <div class="leg"><div class="ld" style="background:var(--coral)"></div>Agenten</div>
+  <div class="leg"><div class="ld" style="background:var(--green)"></div>Portfolio</div>
+  <div class="leg"><div class="ld" style="background:var(--gold)"></div>Big Tech / Top-Uni</div>
+  <div class="leg"><div class="ls" style="border-color:var(--miss)"></div><span style="color:var(--miss)">Fehlt noch</span></div>
+  <div class="leg"><div class="ld" style="background:var(--dg)"></div>Doku ★ exzellent</div>
+  <div class="leg"><div class="ld" style="background:var(--dy)"></div>Doku solide</div>
+</div>
+
+<!-- PROGRESS DASHBOARD -->
+<div class="pdash">
+  <div class="pdash-title">Fortschritt — klick ○ auf Skill oder Projekt zum Tracken · wird lokal gespeichert</div>
+  <div class="pdash-phases">
+    <div class="ph-block"><div class="ph-lbl">Phase 1</div><div class="ph-track"><div class="ph-fill ph1" id="ph1-fill"></div></div><div class="ph-cnt" id="ph1-cnt">0/7 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Phase 2</div><div class="ph-track"><div class="ph-fill ph2" id="ph2-fill"></div></div><div class="ph-cnt" id="ph2-cnt">0/4 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Phase 3</div><div class="ph-track"><div class="ph-fill ph3" id="ph3-fill"></div></div><div class="ph-cnt" id="ph3-cnt">0/4 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Phase 4</div><div class="ph-track"><div class="ph-fill ph4" id="ph4-fill"></div></div><div class="ph-cnt" id="ph4-cnt">0/8 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Phase 5</div><div class="ph-track"><div class="ph-fill ph5" id="ph5-fill"></div></div><div class="ph-cnt" id="ph5-cnt">0/5 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Phase 6</div><div class="ph-track"><div class="ph-fill ph6" id="ph6-fill"></div></div><div class="ph-cnt" id="ph6-cnt">0/2 Skills</div></div>
+    <div class="ph-block"><div class="ph-lbl">Hardware</div><div class="ph-track"><div class="ph-fill ph7" id="ph7-fill"></div></div><div class="ph-cnt" id="ph7-cnt">0/10 Skills</div></div>
+  </div>
+  <div class="pdash-total">
+    <div class="pdash-tlbl">Gesamt</div>
+    <div class="pdash-ttrack"><div class="pdash-tfill" id="total-fill"></div></div>
+    <div class="pdash-pct" id="total-pct">0%</div>
+    <div class="pdash-pcnt" id="proj-cnt">0/15 Projekte</div>
+  </div>
+</div>
+
+<!-- ═══════ PHASE 1 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 1 — Fundament &amp; Data Science</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-teal" data-id="pandas" onclick="showPop('pandas',this)">Pandas &amp; NumPy</span>
+  <span class="skill s-teal" data-id="matplotlib" onclick="showPop('matplotlib',this)">Matplotlib</span>
+  <span class="skill s-gray" data-id="git" onclick="showPop('git',this)">Git &amp; GitHub</span>
+  <span class="skill s-gray" data-id="docker" onclick="showPop('docker',this)">Docker</span>
+  <span class="skill s-gray" data-id="asyncio" onclick="showPop('asyncio',this)">asyncio</span>
+  <span class="skill s-gray" data-id="sql" onclick="showPop('sql',this)">SQL Basics</span>
+  <span class="skill s-gray" data-id="streamlit" onclick="showPop('streamlit',this)">Streamlit</span>
+</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g2">
+
+  <div class="pc pc-teal">
+    <div class="pt">Projekt 1 — Document Analyzer</div>
+    <div class="pd">PDF-Analyse mit Streamlit-Interface, deployed in Docker.</div>
+    <div class="ptags"><span class="ptag s-teal">Pandas</span><span class="ptag s-teal">Matplotlib</span><span class="ptag s-gray">Docker</span><span class="ptag s-gray">Streamlit</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>User lädt eine oder mehrere PDFs hoch (pdfplumber zum Extrahieren)</li>
+          <li>Pandas analysiert den Text: häufigste Wörter, Satzlängen, Lesbarkeits-Score</li>
+          <li>Matplotlib generiert 3 Charts: Wortfrequenz-Balken, Satzlängen-Histogramm, Keyword-Heatmap</li>
+          <li>Streamlit zeigt alles in einer einfachen Weboberfläche</li>
+          <li>Dockerfile verpackt die App, docker-compose.yml startet sie mit einem Befehl</li>
+          <li>GitHub-Repo mit README, Screenshot und Installations-Anleitung</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Konkrete Dateien die entstehen</div>
+        <ul class="detail-list">
+          <li>app.py — Streamlit-Hauptdatei</li>
+          <li>analyzer.py — PDF-Extraktion und Pandas-Logik</li>
+          <li>charts.py — Matplotlib-Visualisierungen</li>
+          <li>Dockerfile + docker-compose.yml</li>
+          <li>requirements.txt</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Du hast verstanden wie man Daten einliest, analysiert, visualisiert und das Ganze als lauffähige App ausliefert.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-teal">
+    <div class="pt">Projekt 2 — Job Market Analyzer</div>
+    <div class="pd">Stellenanzeigen-Daten analysieren, Skills und Gehälter visualisieren. Wächst zu einer AI-Platform.</div>
+    <div class="ptags"><span class="ptag s-teal">Pandas</span><span class="ptag s-teal">Matplotlib</span><span class="ptag s-gray">SQL</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>Starte mit einem öffentlichen Datensatz (z.B. Kaggle Jobs Dataset oder Luke Barousse's Dataset)</li>
+          <li>Pandas bereinigt die Rohdaten: fehlende Werte, Normalisierung von Gehaltsspannen</li>
+          <li>SQL-Datenbank (SQLite) speichert die bereinigten Daten persistent</li>
+          <li>Analyse: welche Skills am häufigsten gefragt, Median-Gehalt pro Technologie, Remote vs. Onsite</li>
+          <li>Matplotlib: Top-20-Skills-Balken, Gehalts-Boxplots, Zeittrend wenn Datum vorhanden</li>
+          <li>Später in Phase 4/5 wird dieses Projekt mit einem LLM-Agenten erweitert</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum dieses Projekt</div>
+        <ul class="detail-list">
+          <li>Direkt relevant für deine eigene Karriere — du analysierst deinen eigenen Zielmarkt</li>
+          <li>Einfach erklärt in Interviews: jeder versteht sofort den Nutzen</li>
+          <li>Wächst über Monate mit: erst Pandas, dann Scraping, dann LLM-Agent</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Ein wachsendes Projekt das du über die gesamte Roadmap weiterentwickelst.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════ PHASE 2 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 2 — Python Stack</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-amber" data-id="scrapy" onclick="showPop('scrapy',this)">Scrapy + Playwright</span>
+  <span class="skill s-amber" data-id="fastapi" onclick="showPop('fastapi',this)">FastAPI + Pydantic</span>
+  <span class="skill s-amber" data-id="tenacity" onclick="showPop('tenacity',this)">tenacity</span>
+  <span class="skill s-amber" data-id="auto" onclick="showPop('auto',this)">Automation</span>
+</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g2">
+
+  <div class="pc pc-amber">
+    <div class="pt">Projekt 3 — Preis-Monitor &amp; API</div>
+    <div class="pd">Scrapy + Playwright scrapen Preise, FastAPI gibt Daten aus, tenacity handelt Rate Limits.</div>
+    <div class="ptags"><span class="ptag s-amber">Scrapy</span><span class="ptag s-amber">Playwright</span><span class="ptag s-amber">FastAPI</span><span class="ptag s-amber">tenacity</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>Scrapy Spider crawlt statische Produktseiten (z.B. MediaMarkt oder idealo) — Produktname, Preis, Verfügbarkeit</li>
+          <li>Playwright übernimmt wenn JavaScript-Rendering nötig ist (dynamisch geladene Preise)</li>
+          <li>SQLite-Datenbank speichert historische Preise mit Zeitstempel</li>
+          <li>tenacity umgibt alle HTTP-Calls: 3 Retries mit exponential backoff bei 429/503</li>
+          <li>FastAPI exponiert zwei Endpoints: GET /prices/{produkt} und GET /history/{produkt}</li>
+          <li>Pydantic-Modelle validieren Ein- und Ausgabe strikt</li>
+          <li>Optional: E-Mail-Benachrichtigung wenn Preis unter Schwellenwert fällt</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum dieses Projekt</div>
+        <ul class="detail-list">
+          <li>Zeigt den kompletten Produktions-Stack: Scraping → DB → API → Error Handling</li>
+          <li>Hat einen echten Nutzen — du kannst es selbst verwenden</li>
+          <li>Direkt verkaufbar an KMUs die Konkurrenzpreise monitoren wollen</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Ein produktionsreifer Service der zuverlässig läuft, auch wenn externe Seiten langsam oder down sind.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-amber">
+    <div class="pt">Projekt 4 — Automation Bot</div>
+    <div class="pd">PDF-Rechnungen verarbeiten, Excel-Reports generieren, E-Mail senden — ohne AI-Kosten.</div>
+    <div class="ptags"><span class="ptag s-amber">Automation</span><span class="ptag s-amber">FastAPI</span><span class="ptag s-gray">Docker</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>pdfplumber liest PDF-Rechnungen ein und extrahiert Betrag, Datum, Lieferant per Regex</li>
+          <li>openpyxl schreibt die extrahierten Daten in eine Excel-Tabelle mit korrekter Formatierung</li>
+          <li>python-docx generiert einen Word-Monatsreport mit Zusammenfassung</li>
+          <li>smtplib verschickt den Report automatisch per E-Mail an eine definierte Adresse</li>
+          <li>FastAPI-Endpoint nimmt PDFs als Upload entgegen und gibt JSON zurück</li>
+          <li>Scheduler (APScheduler) führt den Bot täglich um 8 Uhr aus</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Businesswert</div>
+        <ul class="detail-list">
+          <li>Kleines Unternehmen spart 2–3h Buchhaltungsarbeit pro Woche</li>
+          <li>Keine API-Kosten, keine Cloud-Abhängigkeit — läuft lokal</li>
+          <li>Als Freelance-Projekt direkt anbietbar: einmalige Zahlung, kein Abo</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Zeigen dass du echte Unternehmensprobleme ohne AI lösen kannst — das ist oft mehr wert als ein LLM-Wrapper.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════ PHASE 3 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 3 — ML &amp; PyTorch (ab Tag 1 parallel)</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-purple" data-id="pytorch" onclick="showPop('pytorch',this)">PyTorch</span>
+  <span class="skill s-purple" data-id="lstm" onclick="showPop('lstm',this)">LSTM / Zeitreihen</span>
+  <span class="skill s-miss miss" data-id="stats" onclick="showPop('stats',this)">Statistik &amp; Hypothesis Testing <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="mlflow" onclick="showPop('mlflow',this)">MLflow <span class="miss-b">fehlt</span></span>
+</div>
+<div class="miss-note"><b>Fehlende Skills für JPMorgan &amp; Top-Uni</b>StatQuest von Josh Starmer ist der beste YouTube-Kanal für Statistik — erklärt p-values und t-tests visuell. MLflow Quickstart-Doku reicht für 2 Stunden. Beide ermöglichen wissenschaftlichen Modellvergleich.</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g3">
+
+  <div class="pc pc-purple">
+    <div class="pt">Projekt 5 — LSTM Predictor</div>
+    <div class="pd">PyTorch LSTM auf Zeitreihen trainieren, FastAPI-Endpoint, Docker deployed.</div>
+    <div class="ptags"><span class="ptag s-purple">PyTorch</span><span class="ptag s-purple">LSTM</span><span class="ptag s-amber">FastAPI</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>yfinance lädt historische Ölpreisdaten (Brent Crude) der letzten 5 Jahre</li>
+          <li>Pandas normalisiert und erstellt Sliding-Window-Sequenzen als Input</li>
+          <li>PyTorch LSTM-Netz: 2 Layer, Hidden Size 64, Dropout 0.2, trainiert auf GPU falls verfügbar</li>
+          <li>Training-Loop mit Adam-Optimizer, MSE-Loss, Early Stopping bei Validation-Loss</li>
+          <li>Matplotlib plottet: Trainingskurve, Prediction vs. Actual für letzten Monat</li>
+          <li>torch.save() speichert das Modell, FastAPI lädt es und gibt Predictions zurück</li>
+          <li>Docker-Container, GitHub-Repo mit Trainings-Notebook und README</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Erster echter End-to-End ML-Workflow — von Rohdaten bis zu einem Deployment das andere aufrufen können.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-purple big">
+    <div class="bt bt-j">JPMorgan AI Research</div>
+    <div class="pt">Projekt 6 — Financial Benchmark</div>
+    <div class="pd">LSTM vs. Transformer vs. Naive Baseline auf Finanzdaten. Statistisch evaluiert wie ein Research Paper.</div>
+    <div class="ptags"><span class="ptag s-purple">PyTorch</span><span class="ptag s-purple">LSTM</span><span class="ptag pm">Statistik</span><span class="ptag pm">MLflow</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>3 Modelle auf denselben Daten: Naive Baseline (letzter Wert), LSTM (Projekt 5), Temporal Fusion Transformer</li>
+          <li>MLflow trackt alle Experimente: Hyperparameter, Metriken, Modell-Artefakte</li>
+          <li>Evaluierung: MAE, RMSE, MAPE — t-test zwischen LSTM und Baseline (p-value dokumentiert)</li>
+          <li>Konfidenzintervalle für alle Metriken via Bootstrap-Sampling</li>
+          <li>README im Research-Paper-Format: Abstract, Data, Methods, Results, Conclusion</li>
+          <li>MLflow UI Screenshot im README als Beweis der systematischen Evaluation</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum es JPMorgan überzeugt</div>
+        <ul class="detail-list">
+          <li>Zeigt wissenschaftliches Denken: nicht "es funktioniert", sondern "es ist 18% besser als Baseline mit p=0.03"</li>
+          <li>MLflow zeigt Produktionsreife: du denkst in reproduzierbaren Experimenten</li>
+          <li>Finanzdaten sind direkt im JPMorgan-Kontext relevant</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Das erste Projekt das wie echte Research aussieht — nicht nur Code, sondern Methodik.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-purple big">
+    <div class="bt bt-u">Top-Uni Bewerbung</div>
+    <div class="pt">Projekt 7 — Research Blogpost</div>
+    <div class="pd">ML-Experiment als strukturierten Artikel: Problem → Methode → Ergebnis → Schlussfolgerung.</div>
+    <div class="ptags"><span class="ptag s-purple">ML Konzepte</span><span class="ptag pm">Techn. Schreiben</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du schreibst</div>
+        <ul class="detail-list">
+          <li>Nimm Projekt 6 als Basis — schreib es als Artikel auf Medium oder GitHub Pages</li>
+          <li>Struktur: Motivation (warum Ölpreis?) → Daten → Modelle → Ergebnisse mit Grafiken → Was du gelernt hast</li>
+          <li>Eigene Matplotlib-Charts direkt eingebettet — keine stock photos</li>
+          <li>Code-Snippets für die wichtigsten Teile (LSTM-Definition, Trainingsloop)</li>
+          <li>Ehrliche Diskussion: wo funktioniert das Modell schlecht und warum?</li>
+          <li>500–800 Wörter — nicht länger, Qualität schlägt Länge</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum es für Top-Unis überzeugt</div>
+        <ul class="detail-list">
+          <li>Zeigt dass du selbstständig forschen und kommunizieren kannst</li>
+          <li>Ein öffentlicher Artikel mit echten Lesern ist stärker als jeder Lebenslaufpunkt</li>
+          <li>Admission Committees suchen explizit nach Eigeninitiative außerhalb der Schule</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Öffentlicher Beweis dass du technisch denken und schreiben kannst — beides gleichzeitig.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════ PHASE 3.5 — EMBEDDED AI ═══════ -->
+<div class="tier-hdr"><span class="tier-name" style="color:var(--hw)">Phase 3.5 — Embedded AI &amp; Edge Computing</span><div class="tier-line" style="background:var(--hwb)"></div></div>
+<div class="skills-row">
+  <span class="skill s-miss miss" data-id="opencv" onclick="showPop('opencv',this)">OpenCV <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="yolo" onclick="showPop('yolo',this)">YOLOv8 / Object Detection <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="tracking" onclick="showPop('tracking',this)">Object Tracking <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="esp32" onclick="showPop('esp32',this)">ESP32 / MicroPython <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="mqtt" onclick="showPop('mqtt',this)">MQTT Protokoll <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="pushnotif" onclick="showPop('pushnotif',this)">Push Notifications <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="redis" onclick="showPop('redis',this)">Redis Pub/Sub <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="websockets" onclick="showPop('websockets',this)">WebSockets <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="dockercompose" onclick="showPop('dockercompose',this)">Docker Compose Multi-Service <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="nginx" onclick="showPop('nginx',this)">NGINX Reverse Proxy <span class="miss-b">fehlt</span></span>
+</div>
+<div class="miss-note" style="border-color:var(--hwb);background:var(--hwd);color:var(--hw)">
+  <b>10 Skills insgesamt — 6 für Basis-Projekt, 4 zusätzlich für das skalierte Security-System</b>
+  OpenCV + YOLOv8 bauen direkt auf PyTorch auf. Redis, WebSockets und Docker Compose Multi-Service sind allgemein nützliche Backend-Skills die weit über dieses Projekt hinaus relevant sind. NGINX ist in 3 Tagen gelernt.
+</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#2a1a0a" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#2a1a0a"/></svg>
+<div class="pgrid g2">
+
+  <div class="pc pc-hw">
+    <div class="pt">Projekt H1 — Hase-Intrusion-Detektor</div>
+    <div class="pd">ESP32-CAM filmt live → Raspberry Pi erkennt Hasen per YOLOv8 → Push-Benachrichtigung aufs Handy.</div>
+    <div class="ptags">
+      <span class="ptag s-hw">OpenCV</span><span class="ptag pm">YOLOv8</span><span class="ptag pm">Tracking</span>
+      <span class="ptag pm">ESP32</span><span class="ptag pm">MQTT</span><span class="ptag pm">Push</span>
+      <span class="ptag s-gray">Streamlit</span><span class="ptag s-amber">FastAPI</span>
+    </div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Architektur — 3 Schichten</div>
+        <ul class="detail-list">
+          <li><b>ESP32-CAM</b> → sendet MJPEG-Stream per HTTP an lokale IP des Raspberry Pi</li>
+          <li><b>Raspberry Pi 4</b> → empfängt Stream, verarbeitet Frames mit OpenCV + YOLOv8</li>
+          <li><b>Streamlit Dashboard</b> → hosted auf Pi, zeigt Live-Feed mit Bounding Boxes und Alarm-Log</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">ESP32-CAM Setup</div>
+        <ul class="detail-list">
+          <li>Arduino IDE, CameraWebServer-Sketch flashen — WLAN eintragen, fertig</li>
+          <li>ESP32 streamt unter http://[IP]/stream als MJPEG</li>
+          <li>cv2.VideoCapture("http://[ESP32-IP]/stream") liest den Stream auf dem Pi</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Detection Pipeline auf dem Pi</div>
+        <ul class="detail-list">
+          <li>YOLOv8n (nano, ~4MB) via Ultralytics — ca. 5–10 FPS auf Pi CPU, reicht für Garten</li>
+          <li>Nur Klasse "rabbit" triggert Alarm — Alarm-Zone als Polygon in OpenCV definiert</li>
+          <li>ByteTrack verfolgt Entitäten über Frames, gibt jeder eine persistente ID</li>
+          <li>ntfy.sh Push-Notification mit Frame-Snapshot wenn Hase 3+ Sekunden in Zone</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Hardware (~40€)</div>
+        <ul class="detail-list">
+          <li>ESP32-CAM AI-Thinker: ~8€ · FTDI Serial-Adapter: ~4€ · MicroSD 32GB: ~6€</li>
+          <li>Raspberry Pi 4 (2GB): bereits vorhanden oder ~45€ · USB-C Netzteil: ~8€</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Basis-Schritt: Ein System das wirklich funktioniert. Wächst direkt zum Security-System unten.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-hw big">
+    <div class="pt">Projekt H2 — Multi-Camera Security System</div>
+    <div class="pd">Mehrere ESP32-Cams → je ein Docker-Container mit YOLOv8 → Redis Pub/Sub → zentrales Überwachungs-UI mit Person Detection.</div>
+    <div class="ptags">
+      <span class="ptag s-hw">OpenCV</span><span class="ptag pm">YOLOv8</span><span class="ptag pm">Redis</span>
+      <span class="ptag pm">WebSockets</span><span class="ptag pm">Docker Compose</span><span class="ptag pm">NGINX</span>
+      <span class="ptag s-amber">FastAPI</span><span class="ptag s-gray">Streamlit</span>
+    </div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Systemarchitektur</div>
+        <ul class="detail-list">
+          <li><b>ESP32-CAM-1,2,3</b> → senden MJPEG-Streams ins lokale Netzwerk</li>
+          <li><b>Detection-Container pro Kamera</b> → liest Stream, läuft YOLOv8, publiziert Events auf Redis</li>
+          <li><b>Redis Pub/Sub</b> → Nachrichtenbus zwischen Containern, kein direktes Polling nötig</li>
+          <li><b>FastAPI Central API</b> → subscribt Redis, speichert Events in SQLite, exponiert WebSocket-Endpoint</li>
+          <li><b>Streamlit UI</b> → empfängt Updates via WebSocket, zeigt alle Kamera-Feeds live</li>
+          <li><b>NGINX</b> → reverse proxy, routet /cam1, /cam2, /api, /ui unter einer einzigen IP</li>
+          <li>Alles in <b>docker-compose.yml</b>: ein Befehl startet das gesamte System</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">docker-compose.yml Struktur</div>
+        <ul class="detail-list">
+          <li>service: <b>redis</b> — redis:7-alpine, kein Config nötig</li>
+          <li>service: <b>mosquitto</b> — MQTT-Broker für ESP32-Kommunikation</li>
+          <li>service: <b>cam1-detector</b> — build: ./detector, env: CAM_URL=http://192.168.1.10/stream</li>
+          <li>service: <b>cam2-detector</b> — selbes Image, anderer CAM_URL-Parameter</li>
+          <li>service: <b>camN-detector</b> — skaliert durch env-Variable, kein neues Image</li>
+          <li>service: <b>api</b> — FastAPI, depends_on: redis, exponiert /ws WebSocket-Endpoint</li>
+          <li>service: <b>ui</b> — Streamlit, verbindet zu /ws für Live-Updates</li>
+          <li>service: <b>nginx</b> — nginx:alpine, routet alle Services unter Port 80</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Detection-Container (wiederverwendbar)</div>
+        <ul class="detail-list">
+          <li>Ein einziges Docker-Image: liest CAM_URL aus Umgebungsvariable</li>
+          <li>Öffnet cv2.VideoCapture(os.getenv("CAM_URL")), läuft YOLOv8 auf jedem Frame</li>
+          <li>Person erkannt → redis.publish("detections", json.dumps({cam_id, bbox, confidence, timestamp, frame_b64}))</li>
+          <li>Neue Kamera hinzufügen = eine neue Service-Zeile in docker-compose.yml, sonst nichts</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">FastAPI WebSocket Hub</div>
+        <ul class="detail-list">
+          <li>asyncio + aioredis subscribt alle Redis-Channels</li>
+          <li>Eingehendes Event → sofort an alle verbundenen WebSocket-Clients weitergeleitet</li>
+          <li>SQLite speichert alle Ereignisse persistent: Kamera-ID, Zeitstempel, Konfidenz, Frame-Pfad</li>
+          <li>REST-Endpoints für Alarm-History, Kamera-Status, Statistiken</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Streamlit Monitoring UI</div>
+        <ul class="detail-list">
+          <li>Grid-Layout: N × M Kacheln, eine pro Kamera, Live-Feed mit Bounding Boxes</li>
+          <li>Echtzeit-Updates via WebSocket: neue Detektion → Kachel blinkt, Alert-Banner erscheint</li>
+          <li>Alarm-Log mit Filter nach Kamera, Zeitraum, Konfidenz-Schwellenwert</li>
+          <li>Kamera-Management: Streams hinzufügen/entfernen ohne System-Neustart</li>
+          <li>Statistik-Charts: Detektionen pro Stunde, Hotspot-Heatmap pro Kamera</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum dieses Projekt heraussticht</div>
+        <ul class="detail-list">
+          <li>Echte Microservices-Architektur — kein Tutorial-Projekt sondern ein System das so in Produktion aussieht</li>
+          <li>Horizontale Skalierbarkeit: neue Kamera = eine Zeile YAML, kein Code</li>
+          <li>Verbindet Hardware, Computer Vision, Backend, Real-Time Web in einem System</li>
+          <li>Funktioniert komplett offline im Heimnetz — kein Cloud-Abo, keine laufenden Kosten</li>
+          <li>Custom YOLO Training auf eigenen Person-Daten als natürliche Erweiterung</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Ein produktionsähnliches System das zeigt dass du Architekturentscheidungen treffen und umsetzen kannst — nicht nur Tutorials nachbauen.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════ PHASE 4 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 4 — LLM Ökosystem</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-blue" data-id="hf" onclick="showPop('hf',this)">HuggingFace</span>
+  <span class="skill s-blue" data-id="ollama" onclick="showPop('ollama',this)">Ollama</span>
+  <span class="skill s-blue" data-id="rag" onclick="showPop('rag',this)">RAG</span>
+  <span class="skill s-blue" data-id="instructor" onclick="showPop('instructor',this)">instructor</span>
+  <span class="skill s-blue" data-id="finetuning" onclick="showPop('finetuning',this)">Fine-Tuning (LoRA)</span>
+  <span class="skill s-coral" data-id="ragas" onclick="showPop('ragas',this)">RAGAS</span>
+  <span class="skill s-miss miss" data-id="interp" onclick="showPop('interp',this)">Interpretability <span class="miss-b">fehlt</span></span>
+  <span class="skill s-miss miss" data-id="bias" onclick="showPop('bias',this)">Bias-Evaluation <span class="miss-b">fehlt</span></span>
+</div>
+<div class="miss-note"><b>Fehlende Skills für Anthropic Fellows Program</b>Anthropic's transformer-circuits.pub ist die direkteste Ressource. ARENA für strukturierten Einstieg. DeepEval deckt Bias-Evaluation ab und ist sowieso im Stack vorhanden.</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g3">
+
+  <div class="pc pc-blue">
+    <div class="pt">Projekt 8 — RAG Document QA</div>
+    <div class="pd">Dokumente embedden, per LLM befragen, instructor für strukturierte Outputs, RAGAS-Evaluation.</div>
+    <div class="ptags"><span class="ptag s-blue">RAG</span><span class="ptag s-blue">instructor</span><span class="ptag s-coral">RAGAS</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>User lädt PDFs hoch (z.B. wissenschaftliche Paper, Geschäftsberichte)</li>
+          <li>pdfplumber extrahiert Text, RecursiveCharacterTextSplitter chunked in 512-Token-Blöcke mit 50 Token Overlap</li>
+          <li>HuggingFace Embeddings (all-MiniLM-L6-v2) konvertieren Chunks zu Vektoren</li>
+          <li>ChromaDB speichert die Vektoren lokal persistent</li>
+          <li>Bei einer Frage: Top-5 relevanteste Chunks werden retrieved, per LLM beantwortet</li>
+          <li>instructor erzwingt strukturierten Output: {answer: str, sources: list, confidence: float}</li>
+          <li>RAGAS berechnet automatisch: Context Recall, Faithfulness, Answer Relevance auf 50 Testfragen</li>
+          <li>Streamlit-Interface mit Quellenangaben unter jeder Antwort</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Verstehen warum RAG-Systeme gut oder schlecht sind — und es messen können.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-blue">
+    <div class="pt">Projekt 9 — Chat with CSV</div>
+    <div class="pd">LLM schreibt Pandas-Code aus natürlichsprachigen Fragen. Ergebnis visualisiert. LinkedIn-tauglich.</div>
+    <div class="ptags"><span class="ptag s-teal">Pandas</span><span class="ptag s-blue">LLM</span><span class="ptag s-blue">instructor</span><span class="ptag s-gray">Streamlit</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>User lädt eine CSV hoch, Streamlit zeigt eine Preview der ersten 10 Zeilen</li>
+          <li>User stellt eine Frage: "Welche Stadt hat den höchsten Umsatz im März?"</li>
+          <li>LLM erhält: Spaltennamen + Datentypen + Beispielzeilen + Frage</li>
+          <li>instructor erzwingt Antwort im Format {pandas_code: str, explanation: str}</li>
+          <li>Der Code wird mit exec() auf dem echten DataFrame ausgeführt (mit Sandbox)</li>
+          <li>Ergebnis wird automatisch als Tabelle oder Matplotlib-Chart angezeigt</li>
+          <li>Fehlerbehandlung: wenn Code crasht, wird LLM nochmals mit Fehlermeldung aufgerufen</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum LinkedIn-tauglich</div>
+        <ul class="detail-list">
+          <li>Sofort verständlich in einem 30-Sekunden-Demo-Video</li>
+          <li>Jeder sieht sofort den Nutzen — keine technische Erklärung nötig</li>
+          <li>GIF-Demo im GitHub-README zieht Aufmerksamkeit auf sich</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Ein Projekt das du in jedem Gespräch demonstrieren kannst ohne Erklärung.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-blue big">
+    <div class="bt bt-a">Anthropic Fellows</div>
+    <div class="pt">Projekt 10 — AI Safety Evaluator</div>
+    <div class="pd">LLM-Outputs systematisch auf Halluzinationen, Bias und Konsistenz testen.</div>
+    <div class="ptags"><span class="ptag s-blue">HuggingFace</span><span class="ptag s-coral">RAGAS</span><span class="ptag pm">Interpretability</span><span class="ptag pm">Bias-Eval</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>Evaluierungs-Dataset: 200 Fragen aus 5 Kategorien (Fakten, Meinungen, sensible Themen, Widersprüche, Ambiguität)</li>
+          <li>3 Modelle parallel testen: GPT-4o-mini, Llama-3 (via Ollama), Mistral-7B</li>
+          <li>DeepEval misst pro Modell: Hallucination Rate, Bias Score, Answer Consistency über 10 Reformulierungen</li>
+          <li>Interpretability-Analyse: Attention-Weights für ausgewählte Fragen visualisiert (BertViz oder ähnlich)</li>
+          <li>Streamlit-Dashboard: Modell-Vergleichstabelle, Charts pro Kategorie, Worst-Case-Beispiele</li>
+          <li>Blogpost auf Medium: Methodik, Ergebnisse, was überraschend war, was das bedeutet</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum Anthropic Fellows</div>
+        <ul class="detail-list">
+          <li>Direkt das was Anthropic mit "AI Safety" meint — empirisch, nicht philosophisch</li>
+          <li>Öffentliche Ergebnisse zeigen Bereitschaft zur transparenten Forschung</li>
+          <li>Zeigt dass du Modelle kritisch beurteilst statt blind zu vertrauen</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Das Projekt das dich in der AI-Safety-Community sichtbar macht.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════ PHASE 5 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 5 — Agentic AI</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-coral" data-id="langgraph" onclick="showPop('langgraph',this)">LangGraph</span>
+  <span class="skill s-coral" data-id="langsmith" onclick="showPop('langsmith',this)">LangSmith</span>
+  <span class="skill s-coral" data-id="mcp" onclick="showPop('mcp',this)">MCP</span>
+  <span class="skill s-coral" data-id="deepeval" onclick="showPop('deepeval',this)">DeepEval</span>
+  <span class="skill s-miss miss" data-id="opensource" onclick="showPop('opensource',this)">Open Source Contribution <span class="miss-b">fehlt</span></span>
+</div>
+<div class="miss-note"><b>Fehlende Voraussetzung für Google DeepMind</b>Ein merged Pull Request in DeepEval, LangChain oder HuggingFace PEFT ist wertvoller als 10 eigene Projekte. Mit einem kleinen Bug-Fix oder Doku-Verbesserung anfangen.</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g3">
+
+  <div class="pc pc-coral">
+    <div class="pt">Projekt 11 — Research Agent</div>
+    <div class="pd">LangGraph-Agent mit RAG, Web-Search und MCP-Tools. LangSmith-Tracing, DeepEval-Tests.</div>
+    <div class="ptags"><span class="ptag s-coral">LangGraph</span><span class="ptag s-coral">MCP</span><span class="ptag s-coral">DeepEval</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>LangGraph-Graph mit 4 Nodes: Planer, Web-Researcher, RAG-Researcher, Synthese</li>
+          <li>User gibt ein Thema ein: "Analysiere den aktuellen Stand von Quantencomputing"</li>
+          <li>Planer entscheidet welche Nodes in welcher Reihenfolge aufgerufen werden</li>
+          <li>Web-Researcher nutzt Tavily Search API für aktuelle Informationen</li>
+          <li>RAG-Researcher durchsucht eine eigene Wissensdatenbank (Paper, Bücher)</li>
+          <li>Synthese-Node kombiniert beide Quellen zu einem strukturierten Report</li>
+          <li>Eigener MCP-Server exponiert die Wissensdatenbank als Tool</li>
+          <li>LangSmith trackt jeden Schritt: Tokens, Latenz, Tool-Calls, Reasoning</li>
+          <li>DeepEval testet: Antwortet der Agent korrekt auf 30 Benchmark-Fragen?</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Verstehen wie echte Multi-Step-Agenten funktionieren und wie man sie zuverlässig macht.</div>
+    </div>
+  </div>
+  <div class="pc pc-coral big">
+    <div class="bt bt-g">Google DeepMind</div>
+    <div class="pt">Projekt 12 — Open Source Contribution</div>
+    <div class="pd">Bug fixen oder Feature hinzufügen in LangChain, HuggingFace PEFT oder DeepEval.</div>
+    <div class="ptags"><span class="ptag pm">Open Source</span><span class="ptag s-coral">DeepEval</span><span class="ptag s-blue">HuggingFace</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Konkrete Schritte</div>
+        <ul class="detail-list">
+          <li>Starte mit dem DeepEval GitHub-Repo — kleineres Projekt, freundlichere Community</li>
+          <li>Issues mit Label "good first issue" oder "documentation" durchsuchen</li>
+          <li>Gute Einstiegspunkte: fehlende Docstrings ergänzen, Beispiele in der Doku verbessern, einen bekannten Bug reproduzieren und fixen</li>
+          <li>Fork → Branch → Änderung → Tests laufen lassen → Pull Request öffnen</li>
+          <li>PR-Beschreibung: was hast du geändert, warum, wie hast du getestet</li>
+          <li>Wenn merged: Screenshot und Link im Lebenslauf unter "Open Source Contributions"</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum Google DeepMind es sieht</div>
+        <ul class="detail-list">
+          <li>GitHub-Profil ist öffentlich — Recruiters schauen explizit nach merged PRs</li>
+          <li>Zeigt dass du mit echten Codebases arbeiten kannst, nicht nur eigene Projekte</li>
+          <li>Community-Interaktion zeigt Teamfähigkeit und Kommunikation</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Einen einzigen echten merged Pull Request — das reicht und ist mehr wert als du denkst.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-coral big">
+    <div class="bt bt-all">Alle Firmen + Unis</div>
+    <div class="pt">Projekt 13 — Techblog (3–5 Artikel)</div>
+    <div class="pd">Eigene Experimente als Artikel: Problem → Methode → Ergebnis → Schlussfolgerung.</div>
+    <div class="ptags"><span class="ptag pm">Techn. Schreiben</span><span class="ptag s-coral">LangGraph</span><span class="ptag s-purple">PyTorch</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Artikel-Ideen aus deinen Projekten</div>
+        <ul class="detail-list">
+          <li>"Warum mein LSTM Ölpreise nicht gut vorhersagt — und was ich daraus gelernt habe"</li>
+          <li>"RAG vs. Fine-Tuning: wann macht was Sinn?" (basierend auf Projekt 8 + 10)</li>
+          <li>"Wie ich GPT-4o auf Halluzinationen getestet habe — mit Zahlen" (Projekt 10)</li>
+          <li>"LangGraph vs. einfacher ReAct-Agent: wann lohnt sich die Komplexität?" (Projekt 11)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Format das funktioniert</div>
+        <ul class="detail-list">
+          <li>500–900 Wörter — nicht länger, Leser verlieren Interesse</li>
+          <li>Immer mit einem echten Ergebnis (Zahl, Chart, Vergleich) — keine Theorie ohne Praxis</li>
+          <li>Ehrlich über Misserfolge: "Das hat nicht funktioniert, weil..." ist interessanter als Erfolgsgeschichten</li>
+          <li>Cross-posten: Medium + LinkedIn-Post mit dem Link + GitHub Pages als Archiv</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Eine öffentliche Spur deines Lernwegs die zeigt dass du denkst, nicht nur kopierst.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PHASE 6 ═══════ -->
+<div class="tier-hdr"><span class="tier-name">Phase 6 — AWS Deployment &amp; Portfolio</span><div class="tier-line"></div></div>
+<div class="skills-row">
+  <span class="skill s-green" data-id="aws" onclick="showPop('aws',this)">AWS (ECR, ECS, S3)</span>
+  <span class="skill s-miss miss" data-id="mlflow2" onclick="showPop('mlflow2',this)">MLflow <span class="miss-b">fehlt</span></span>
+</div>
+<svg class="connector" height="26" viewBox="0 0 800 26" preserveAspectRatio="none"><line x1="400" y1="0" x2="400" y2="20" stroke="#23262f" stroke-width="1.5"/><polygon points="394,16 406,16 400,24" fill="#23262f"/></svg>
+<div class="pgrid g2">
+  <div class="pc pc-green big">
+    <div class="bt bt-j">JPMorgan · Top-Uni</div>
+    <div class="pt">Hauptprojekt — Ölpreis System</div>
+    <div class="pd">LSTM predicted → RAG-Agent evaluiert mit Kontext → structured output → AWS deployed.</div>
+    <div class="ptags"><span class="ptag s-purple">LSTM</span><span class="ptag s-blue">RAG</span><span class="ptag s-coral">LangGraph</span><span class="ptag s-coral">DeepEval</span><span class="ptag s-green">AWS</span><span class="ptag pm">MLflow</span><span class="ptag pm">Statistik</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust — vollständige Pipeline</div>
+        <ul class="detail-list">
+          <li>Service 1 (ML): PyTorch LSTM nimmt 60 Tage historische Ölpreise und gibt 7-Tage-Forecast zurück — als FastAPI-Endpoint</li>
+          <li>Service 2 (RAG): ChromaDB mit aktuellen Energienachrichten, OPEC-Berichten und geopolitischen Analysen — per Playwright täglich aktualisiert</li>
+          <li>Service 3 (Agent): LangGraph-Graph mit 3 Nodes — LSTM aufrufen, RAG konsultieren, Synthese schreiben</li>
+          <li>instructor erzwingt finalen Output: {forecast: list, confidence: float, key_factors: list, risks: list}</li>
+          <li>LangSmith trackt jeden Agenten-Run vollständig</li>
+          <li>DeepEval testet wöchentlich: sind die key_factors faktisch korrekt?</li>
+          <li>MLflow dokumentiert alle LSTM-Experimente mit Metriken und Konfidenzintervallen</li>
+          <li>Alles in Docker-Compose (3 Services), deployed auf AWS ECS, Streamlit-Dashboard öffentlich erreichbar</li>
+          <li>GitHub README im Research-Format: Abstract, Architecture-Diagram, Evaluation-Ergebnisse, Live-URL</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Was du im Interview sagst</div>
+        <ul class="detail-list">
+          <li>"Das Modell alleine hat MAE X — mit RAG-Kontext sinkt er auf Y, weil aktuelle Ereignisse einbezogen werden"</li>
+          <li>"Ich habe 3 Modellarchitekturen verglichen und statistisch mit t-test evaluiert"</li>
+          <li>"Das System läuft produktiv auf AWS und wird täglich mit neuen Daten gefüttert"</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Das eine Projekt das du in jedem Interview als Anker nutzt — es verbindet alles was du kannst.</div>
+    </div>
+  </div>
+
+  <div class="pc pc-green big">
+    <div class="bt bt-a">Anthropic · Google</div>
+    <div class="pt">AI Safety &amp; Evaluation Platform</div>
+    <div class="pd">Systematische Evaluation von LLM-Outputs auf Bias, Halluzinationen und Konsistenz.</div>
+    <div class="ptags"><span class="ptag s-blue">RAG</span><span class="ptag s-coral">DeepEval</span><span class="ptag s-green">AWS</span><span class="ptag pm">Interpretability</span><span class="ptag pm">Open Source</span></div>
+    <button class="detail-btn" onclick="toggleDetail(this)">Details anzeigen ▾</button>
+    <div class="pc-detail">
+      <div class="detail-section">
+        <div class="detail-section-title">Was du baust</div>
+        <ul class="detail-list">
+          <li>Evaluierungs-Framework: 300 kuratierte Testfragen in 6 Kategorien (Fakten, Bias, Konsistenz, Sicherheit, Widersprüche, Ambiguität)</li>
+          <li>5 Modelle parallel evaluiert: GPT-4o-mini, Claude Haiku, Llama-3-8B, Mistral-7B, Gemma-2B</li>
+          <li>DeepEval misst: Hallucination Rate, Bias Score, Toxicity, Answer Consistency über 10 Reformulierungen pro Frage</li>
+          <li>Interpretability-Modul: für 20 ausgewählte Fragen werden Attention-Weights visualisiert (welche Tokens führen zu welcher Antwort)</li>
+          <li>Öffentliches Streamlit-Dashboard: Leaderboard, Kategorie-Breakdown, Worst-Case-Beispiele mit Erklärung</li>
+          <li>Monatliche Aktualisierung: neue Modelle werden automatisch in die Evaluation integriert</li>
+          <li>Blogpost-Serie auf Medium: ein Artikel pro Evaluierungskategorie mit Ergebnissen und Interpretation</li>
+          <li>Optional: als Open-Source-Tool auf PyPI veröffentlichen</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Warum Anthropic und Google es bemerken</div>
+        <ul class="detail-list">
+          <li>Zeigt empirisches Safety-Denken: du misst, du vergleichst, du dokumentierst</li>
+          <li>Öffentliches Dashboard macht deine Arbeit sichtbar ohne Selbstvermarktung</li>
+          <li>Open-Source-Veröffentlichung zeigt Community-Denken — genau was beide Firmen wollen</li>
+          <li>Monatliche Updates zeigen langfristige Commitment, nicht nur ein schnelles Projekt</li>
+        </ul>
+      </div>
+      <div class="detail-goal">Ziel: Das Projekt das dir eine Identität in der AI-Community gibt — "der der LLMs systematisch evaluiert".</div>
+    </div>
+  </div>
+</div>
+
+<!-- Zertifikate -->
+<div class="tier-hdr"><span class="tier-name">Zertifikate</span><div class="tier-line"></div></div>
+<div class="cert-row">
+  <div class="cert-card">
+    <div class="pt">AWS AI Practitioner</div>
+    <div class="pd">Nach Phase 4 · 100 USD · 50% Rabatt auf nächste Prüfung danach</div>
+    <a href="https://www.youtube.com/watch?v=WZeZZ8_W-M4" target="_blank" style="font-size:10px;color:var(--teal);font-family:'IBM Plex Mono',monospace">YT · Vorbereitungskurs →</a>
+  </div>
+  <div class="cert-card">
+    <div class="pt">AWS ML Engineer Associate</div>
+    <div class="pd">Nach Phase 6 · 75 USD mit Rabatt · Nachfolger des ML Specialty</div>
+    <a href="https://skillbuilder.aws" target="_blank" style="font-size:10px;color:var(--teal);font-family:'IBM Plex Mono',monospace">AWS Skill Builder →</a>
+  </div>
+  <div class="cert-card">
+    <div class="pt">NVIDIA DLI</div>
+    <div class="pd">Nach Phase 3+6 · GPU-Programmierung · starkes differenzierendes Signal</div>
+    <a href="https://www.youtube.com/watch?v=0WjfKQdfeMU" target="_blank" style="font-size:10px;color:var(--teal);font-family:'IBM Plex Mono',monospace">YT · Vorbereitung →</a>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="ban-t">Was dich wirklich unterscheidet — für jede Top-Firma</div>
+  <div class="ban-s">Technische Projekte alleine reichen nicht. Was Anthropic, Google DeepMind, JPMorgan und Top-Unis gemeinsam haben: sie wollen sehen dass du <b style="color:var(--gold)">systematisch denkst, Ergebnisse dokumentierst und öffentlich zeigst</b>. Ein Techblog-Artikel über ein eigenes Experiment, eine statistisch evaluierte Benchmark-Studie, oder ein merged Pull Request — das sind die Signale die dich von anderen 17-Jährigen abheben.</div>
+</div>
+
+</div>
+
+</div>
+<script>
+const DATA={
+  pandas:{title:"Pandas & NumPy",desc:"Datenaufbereitung, Analyse, Bereinigung — Basis für ML-Datensätze und LLM-Evaluation",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=wUSDVGivd-8",t:"YT · Data Science: Pandas, Matplotlib, Seaborn"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=DiQ5Hni6oRI",t:"YT · SQL + Pandas Kurzüberblick"},
+    {c:"pg",h:"https://pandas.pydata.org/docs/user_guide/index.html",t:"★ Doku · pandas User Guide"},
+    {c:"pg",h:"https://numpy.org/doc/stable/user/quickstart.html",t:"★ Doku · NumPy Quickstart"}]},
+  matplotlib:{title:"Matplotlib",desc:"Daten visualisieren — für Analysen, Evaluation-Ergebnisse und Research-Blogposts",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=wUSDVGivd-8",t:"YT · Data Science: Pandas, Matplotlib, Seaborn"},
+    {c:"pg",h:"https://matplotlib.org/stable/tutorials/index.html",t:"★ Doku · Matplotlib Tutorials"}]},
+  git:{title:"Git & GitHub",desc:"Commits, Branches, Pull Requests — ab Tag 1. Saubere Commit-History ist dein erstes Portfolio-Signal.",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=mAFoROnOfHs",t:"YT · Git & GitHub FCC"},
+    {c:"pg",h:"https://docs.github.com/en/get-started",t:"★ Doku · GitHub Getting Started"}]},
+  docker:{title:"Docker",desc:"Images, Container, Dockerfile — jedes Projekt einpacken. Früh und häufig deployen.",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=RqTEHSBrYFw",t:"YT · Docker Kurs"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=bKFMS5C4CG0",t:"YT · Docker Networks (sehr gut!)"},
+    {c:"pg",h:"https://docs.docker.com/get-started/",t:"★ Doku · Docker Get Started"}]},
+  asyncio:{title:"asyncio",desc:"async/await, event loop, parallele LLM-Calls — macht Agenten deutlich schneller",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=oAkLSJNr5zY",t:"YT · asyncio Tutorial"},
+    {c:"pg",h:"https://docs.python.org/3/library/asyncio.html",t:"★★ Doku · Python asyncio (exzellent)"}]},
+  sql:{title:"SQL Basics",desc:"SELECT, JOIN, GROUP BY — für Datenbanken in Agenten und strukturierte Unternehmensdaten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=DiQ5Hni6oRI",t:"YT · SQL + Pandas Kurzüberblick"},
+    {c:"pg",h:"https://www.w3schools.com/sql/",t:"★ W3Schools SQL"},
+    {c:"pg",h:"https://sqlbolt.com/",t:"★ SQLBolt — interaktiv"}]},
+  streamlit:{title:"Streamlit",desc:"Schnelle Demo-UIs in reinem Python — für alle Projekt-Demos ohne Frontend-Kenntnisse",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=o8p7uQCGD0U",t:"YT · Streamlit Tutorial"},
+    {c:"pg",h:"https://docs.streamlit.io/get-started",t:"★★ Doku · Streamlit (sehr gut)"}]},
+  scrapy:{title:"Scrapy + Playwright",desc:"Scrapy für statische Seiten, Playwright für JS-Rendering, AI Web Scraper als moderner Ansatz",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=mBoX_JCKZTE",t:"YT · Scrapy FreeCodeCamp"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=Oo8-nEuDBkk",t:"YT · AI Web Scraper"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=NB8OceGZGjA",t:"YT · Selenium Exkurs"},
+    {c:"pg",h:"https://playwright.dev/python/docs/intro",t:"★★ Doku · Playwright (1 Wochenende)"}]},
+  fastapi:{title:"FastAPI + Pydantic",desc:"Async REST-APIs bauen, Datenvalidierung — Schnittstelle zwischen AI-Logik und Außenwelt",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=SR5NYCdzKkc",t:"YT · FastAPI durch Projekt meistern"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=PkQIREapb9o",t:"YT · Pydantic Vollständiger Kurs"},
+    {c:"pg",h:"https://fastapi.tiangolo.com",t:"★★ Doku · FastAPI (exzellent)"}]},
+  tenacity:{title:"tenacity — Retry-Logik",desc:"API-Fehler, Rate Limits, exponential backoff — in jedem Produktionssystem nötig",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=GSxVqCnTY9M",t:"YT · Tenacity Kurs"},
+    {c:"pg",h:"https://tenacity.readthedocs.io",t:"★★ Doku · tenacity (2–3h)"}]},
+  auto:{title:"Python Automation",desc:"PDF, Excel, Word, E-Mail automatisieren — Prozesse ohne AI-Kosten lösen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=PXMJ6FS7llk",t:"YT · Automation with Python (FCC)"},
+    {c:"pg",h:"https://automatetheboringstuff.com/",t:"★ Automate the Boring Stuff (kostenlos)"}]},
+  pytorch:{title:"PyTorch — Hauptkurs",desc:"Tensoren, Netzwerke, Trainingsloop, GPU — ab Tag 1 täglich parallel lernen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=V_xro1bcAuA",t:"YT · PyTorch FCC (26h Hauptkurs)"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=NWONeJKn6kc",t:"YT · ML Kurs FCC (weiterer Kurs)"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=wlpBCazAY9Q",t:"YT · AI-Assisted Development"},
+    {c:"pg",h:"https://pytorch.org/docs/stable/index.html",t:"★★ Doku · PyTorch (exzellent)"}
+  ],note:"Buch: Grokking Deep Learning — gut für Intuition"},
+  lstm:{title:"LSTM & Zeitreihen",desc:"Zeitreihen-Modelle für das Ölpreis-Projekt — separat zum PyTorch-Hauptkurs lernen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=fxx_E0ojKrc",t:"YT · Time Series Forecasting"},
+    {c:"pg",h:"https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html",t:"★ Doku · PyTorch LSTM"}]},
+  stats:{title:"Statistik & Hypothesis Testing",desc:"p-values, t-tests, confidence intervals — Modelle wissenschaftlich vergleichen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=fb8BSFr0isg",t:"YT · Hypothesis Testing (15 Min, sehr kompakt)"},
+    {c:"pg",h:"https://www.youtube.com/@statquest",t:"★★ StatQuest — bester Kanal für Statistik"},
+    {c:"py",h:"https://www.freecodecamp.org/news/statistics-for-data-scientce-machine-learning-and-ai-handbook/",t:"FCC · Statistik für ML Handbook"}
+  ],note:"ca. 1–2 Wochen · hoch relevant für JPMorgan & Top-Uni"},
+  mlflow:{title:"MLflow — Experiment Tracking",desc:"Modell-Experimente tracken als Teil eines vollständigen MLOps-Workflows",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=-dJPoLm_gtE",t:"YT · MLOps Kurs (vollständig)"},
+    {c:"pg",h:"https://mlflow.org/docs/latest/ml/tracking/quickstart/",t:"★★ Doku · MLflow Quickstart (2h)"}
+  ],note:"2h für Quickstart · MLOps Kurs für tieferes Verständnis"},
+  hf:{title:"HuggingFace",desc:"LLM Kurs, Modelle laden und deployen, Tokenizer, Pipelines. Buch: Hands on LLMs.",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=R8h_gpSpEVU",t:"YT · HuggingFace LLMs deployen"},
+    {c:"pg",h:"https://huggingface.co/learn/llm-course",t:"★ HF LLM Kurs (kostenlos, sehr gut)"},
+    {c:"pg",h:"https://huggingface.co/learn/agents-course/unit0/introduction",t:"★ HF Agents Kurs"}
+  ],note:"Buch: Hands on LLMs — du besitzt es bereits"},
+  ollama:{title:"Ollama — Lokale Modelle",desc:"Open-Source-Modelle lokal laufen lassen — für datenschutzsensible Kunden ohne API-Kosten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=GWB9ApTPTv4",t:"YT · Ollama Vollständiger Kurs"},
+    {c:"pg",h:"https://ollama.com/docs",t:"★ Doku · Ollama"}]},
+  rag:{title:"RAG — Retrieval Augmented Generation",desc:"Dokumente chunken, embedden, Vektordatenbank, Retrieval — Kern jedes Agenten-Systems",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=I7_WXKhyGms",t:"YT · RAG + MCP (Hauptkurs)"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=sVcwVQRHIc8",t:"YT · RAG from Scratch"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=HaUe2AN210g",t:"YT · Enterprise RAG"}]},
+  instructor:{title:"instructor — Structured Outputs",desc:"Zuverlässige strukturierte Daten aus LLMs mit Pydantic — in Produktion unverzichtbar",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=VllkW63LWbY",t:"YT · Structured Output mit instructor"},
+    {c:"pg",h:"https://python.useinstructor.com/start-here/",t:"★★ Doku · instructor (exzellent)"}]},
+  finetuning:{title:"Fine-Tuning mit LoRA / QLoRA",desc:"Modelle auf eigene Daten anpassen — wann Fine-Tuning vs. Prompting sinnvoll ist",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=CcrC5zSv1iA",t:"YT · LLM Fine-Tuning MEGA-Kurs"},
+    {c:"pg",h:"https://huggingface.co/docs/peft/index",t:"★ Doku · HuggingFace PEFT"}]},
+  ragas:{title:"RAGAS — RAG Evaluation",desc:"Context Recall, Faithfulness, Answer Relevance messen — ohne Evaluation baust du blind",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=mEv-2Xnb_Wk",t:"YT · RAGAS Tutorial"},
+    {c:"pg",h:"https://docs.ragas.io/en/stable/getstarted/",t:"★★ Doku · RAGAS Getting Started"}]},
+  interp:{title:"Mechanistic Interpretability",desc:"Was tut ein Modell intern? — Anthropic sucht explizit dieses Denken für das Fellows Program",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=fGKNUvivvnc",t:"YT · Anthropic Interpretability (1h — direkte Quelle)"},
+    {c:"pg",h:"https://transformer-circuits.pub/",t:"★★ Anthropic Transformer Circuits"},
+    {c:"py",h:"https://www.arena.education/chapter1",t:"ARENA · Mechanistic Interp Kurs"}
+  ],note:"1–2 Wochen · Anthropic YT Video ist der beste Einstieg"},
+  bias:{title:"LLM Bias-Evaluation",desc:"Systematisch messen ob ein Modell unfair oder inkonsistent antwortet",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=og67qeTZPYs",t:"YT · IBM AI Bias Erklärung"},
+    {c:"pg",h:"https://deepeval.com/docs/getting-started",t:"★★ DeepEval Doku (deckt Bias ab)"},
+    {c:"py",h:"https://www.evidentlyai.com/llm-guide/llm-as-a-judge",t:"Guide · LLM-as-Judge Bias Evaluation"}
+  ],note:"1 Woche · DeepEval ist ohnehin in deinem Stack"},
+  langgraph:{title:"LangGraph",desc:"Agenten-Graphen, State Machines, Multi-Step-Workflows — Standard für komplexe Agenten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=jGg_1h0qzaM",t:"YT · LangGraph Kurs"},
+    {c:"py",h:"https://langchain-ai.github.io/langgraph/",t:"Doku · LangGraph"}]},
+  langsmith:{title:"LangSmith — Tracing",desc:"Sehen was dein Agent wirklich tut — Debugging, Latenz, Tool-Calls sichtbar machen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=4FFspU4riHk",t:"YT · LangSmith Tracing Tutorial"},
+    {c:"py",h:"https://docs.smith.langchain.com/",t:"Doku · LangSmith"}]},
+  mcp:{title:"MCP — Model Context Protocol",desc:"Eigene Tool-Server bauen — Agenten mit externen Systemen verbinden",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=DosHnyq78xY",t:"YT · MCP Auffrischung"},
+    {c:"pg",h:"https://huggingface.co/learn/mcp-course",t:"★ HF MCP Kurs (sehr aktuell)"}]},
+  deepeval:{title:"DeepEval — pytest für LLMs",desc:"Testet ob dein Agent zuverlässig das Richtige tut — oder selber nachbauen als Lernprojekt",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=a3SMraZWNNs",t:"YT · LLM Evals (selber nachbauen)"},
+    {c:"pg",h:"https://deepeval.com/docs/getting-started",t:"★★ Doku · DeepEval (Hauptressource)"}]},
+  opensource:{title:"Open Source Contribution",desc:"Google DeepMind listet Beiträge explizit. Ein merged PR ist wertvoller als 10 eigene Projekte.",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=mklEhT_RLos",t:"YT · Open-Source Contribution Anleitung"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=yt6zuQbETMI",t:"YT · Research Paper lesen (5 Min)"},
+    {c:"py",h:"https://github.com/firstcontributions/first-contributions",t:"Guide · First Contributions"},
+    {c:"py",h:"https://github.com/deepeval-ai/deepeval",t:"GitHub · DeepEval Repo"}
+  ],note:"Ziel: 1 merged Pull Request · stärkstes Signal für Google DeepMind"},
+  aws:{title:"AWS Core Services",desc:"ECR, ECS, S3 — Docker-Container in der Cloud deployen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=tfU0JEZjcsg",t:"YT · AWS S3 Tutorial"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=1_AlV-FFxM8",t:"YT · Deploying from Docker auf AWS"},
+    {c:"pb",h:"https://www.youtube.com/watch?v=I9VAMGEjW-Q",t:"YT · Elastic Container Service (ECS)"},
+    {c:"py",h:"https://skillbuilder.aws",t:"AWS Skill Builder (kostenlose Kurse)"}]},
+  mlflow2:{title:"MLflow für Portfolio-Projekte",desc:"Experiment-Tracking macht dein Hauptprojekt wissenschaftlich nachvollziehbar",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=-dJPoLm_gtE",t:"YT · MLOps Kurs"},
+    {c:"pg",h:"https://mlflow.org/docs/latest/ml/tracking/quickstart/",t:"★★ Doku · MLflow Quickstart (2h)"}]},
+  opencv:{title:"OpenCV",desc:"Frames lesen, Regionen definieren, Bounding Boxes zeichnen, MJPEG-Stream empfangen",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=oXlwWbU8l2o",t:"YT · OpenCV FCC Kurs"},
+    {c:"pg",h:"https://docs.ultralytics.com/",t:"★★ Doku · Ultralytics (YOLOv8 + OpenCV)"},
+    {c:"pg",h:"https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html",t:"★ Doku · OpenCV Python Tutorials"}
+  ],note:"2 Wochen · baut direkt auf PyTorch und NumPy auf"},
+  yolo:{title:"YOLOv8 / Object Detection",desc:"Vortrainierte Modelle für Real-Time Detection — nano läuft auf Raspberry Pi ohne GPU",links:[
+    {c:"pg",h:"https://docs.ultralytics.com/",t:"★★ Doku · Ultralytics YOLOv8 (exzellent)"},
+    {c:"py",h:"https://roboflow.com/",t:"Roboflow · Custom Datasets annotieren"}
+  ],note:"1 Woche · 2 Zeilen Code für erste Detection"},
+  tracking:{title:"Object Tracking",desc:"Gleiche Objekte über Frames mit persistenter ID verfolgen — direkt in Ultralytics integriert",links:[
+    {c:"pg",h:"https://docs.ultralytics.com/modes/track/",t:"★★ Doku · Ultralytics Tracking (1h)"},
+    {c:"py",h:"https://github.com/abewley/sort",t:"GitHub · SORT (einfach, gut zum Lernen)"}
+  ],note:"1 Woche · model.track() ist alles was du brauchst"},
+  esp32:{title:"ESP32-CAM / Arduino",desc:"Microcontroller flashen, WLAN einrichten, MJPEG-Stream starten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=visj0KE5VtY",t:"YT · ESP32-CAM Setup & Stream"},
+    {c:"py",h:"https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-url/",t:"Tutorial · ESP32-CAM CameraWebServer"}
+  ],note:"1–2 Wochen · Arduino-Weg ist einfacher als MicroPython"},
+  mqtt:{title:"MQTT Protokoll",desc:"Publish-Subscribe Protokoll für IoT — ESP32 zu Raspberry Pi Kommunikation",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=Q5cxPTKN5nE",t:"YT · MQTT Protocol Python"},
+    {c:"py",h:"https://mosquitto.org/",t:"Eclipse Mosquitto Broker"},
+    {c:"pg",h:"https://pypi.org/project/paho-mqtt/",t:"Doku · paho-mqtt"}
+  ],note:"3 Tage · bei diesem Projekt optional"},
+  pushnotif:{title:"Push Notifications (ntfy.sh)",desc:"Kostenlose, open-source Push-Notifications — kein Account, ntfy App iOS/Android",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=2RHqWr6QWHc",t:"YT · Push Notification Tutorial (sehr schnell)"},
+    {c:"pg",h:"https://ntfy.sh/docs/",t:"★★ Doku · ntfy.sh (sehr gut, 1h)"}
+  ],note:"1–2h · requests.post() sind 3 Zeilen"},
+  redis:{title:"Redis Pub/Sub",desc:"Nachrichtenbus zwischen Docker-Containern — Detection-Events in Echtzeit weiterleiten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=jgpVdJB2sKQ",t:"YT · Redis Python Quickstart"},
+    {c:"pg",h:"https://redis.io/docs/manual/pubsub/",t:"★★ Doku · Redis Pub/Sub"}
+  ],note:"2–3 Tage · Schlüssel-Skill für Container-Kommunikation"},
+  websockets:{title:"WebSockets",desc:"Echtzeit-Verbindung zwischen Server und Browser — Live-Updates ohne Page-Reload",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=3QiPPX-KeSc",t:"YT · Python Sockets Tutorial"},
+    {c:"pg",h:"https://fastapi.tiangolo.com/advanced/websockets/",t:"★★ Doku · FastAPI WebSockets (exzellent)"}
+  ],note:"3–4 Tage · baut auf asyncio auf"},
+  dockercompose:{title:"Docker Compose Multi-Service",desc:"Mehrere Container als ein System — gemeinsames Netzwerk, ein Befehl zum Starten",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=bKFMS5C4CG0",t:"YT · Docker Networks (sehr gut!)"},
+    {c:"pg",h:"https://docs.docker.com/compose/",t:"★★ Doku · Docker Compose"}
+  ],note:"1 Woche · baut auf Docker-Grundlagen auf"},
+  nginx:{title:"NGINX Reverse Proxy",desc:"Alle Services unter einer IP bündeln — /cam1, /api, /ui unter einem Eintrag",links:[
+    {c:"pb",h:"https://www.youtube.com/watch?v=9t9Mp0BGnyI",t:"YT · NGINX Reverse Proxy"},
+    {c:"pg",h:"https://nginx.org/en/docs/beginners_guide.html",t:"★ Doku · NGINX Beginner's Guide"}
+  ],note:"2–3 Tage · nginx.conf für diesen Use Case ~20 Zeilen"}
+};
+
+function toggleDetail(btn){
+  const d=btn.nextElementSibling;
+  const open=d.classList.toggle('open');
+  btn.textContent=open?'Details ausblenden ▴':'Details anzeigen ▾';
+}
+
+const SKILLS_TIME={
+  pandas:"2 Wo",matplotlib:"3 Tage",git:"2 Tage",docker:"4 Tage",asyncio:"2 Tage",
+  sql:"3 Tage",streamlit:"2 Tage",scrapy:"1 Wo",fastapi:"1 Wo",tenacity:"3h",
+  auto:"1 Wo",pytorch:"3 Mo ↺",lstm:"1 Wo",stats:"2 Wo",mlflow:"2h",
+  hf:"2 Wo",ollama:"3 Tage",rag:"1 Wo",instructor:"1 Tag",finetuning:"2 Wo",
+  ragas:"3 Tage",interp:"2 Wo",bias:"1 Wo",langgraph:"2 Wo",langsmith:"3 Tage",
+  mcp:"1 Wo",deepeval:"3 Tage",opensource:"variabel",aws:"2 Wo",mlflow2:"2h",
+  opencv:"2 Wo",yolo:"1 Wo",tracking:"1 Wo",esp32:"2 Wo",mqtt:"3 Tage",pushnotif:"2h",
+  redis:"3 Tage",websockets:"4 Tage",dockercompose:"1 Wo",nginx:"3 Tage"
+};
+const SKILL_PHASE={
+  pandas:1,matplotlib:1,git:1,docker:1,asyncio:1,sql:1,streamlit:1,
+  scrapy:2,fastapi:2,tenacity:2,auto:2,
+  pytorch:3,lstm:3,stats:3,mlflow:3,
+  hf:4,ollama:4,rag:4,instructor:4,finetuning:4,ragas:4,interp:4,bias:4,
+  langgraph:5,langsmith:5,mcp:5,deepeval:5,opensource:5,
+  aws:6,mlflow2:6,
+  opencv:7,yolo:7,tracking:7,esp32:7,mqtt:7,pushnotif:7,
+  redis:7,websockets:7,dockercompose:7,nginx:7
+};
+const PROJ_DATA={
+  "Projekt 1 — Document Analyzer":           {pid:"p1", time:"1 Wo",   phase:1},
+  "Projekt 2 — Job Market Analyzer":         {pid:"p2", time:"1 Wo",   phase:1},
+  "Projekt 3 — Preis-Monitor & API":         {pid:"p3", time:"2 Wo",   phase:2},
+  "Projekt 4 — Automation Bot":              {pid:"p4", time:"1 Wo",   phase:2},
+  "Projekt 5 — LSTM Predictor":              {pid:"p5", time:"2 Wo",   phase:3},
+  "Projekt 6 — Financial Benchmark":         {pid:"p6", time:"3 Wo",   phase:3},
+  "Projekt 7 — Research Blogpost":           {pid:"p7", time:"3 Tage", phase:3},
+  "Projekt H1 — Hase-Intrusion-Detektor":    {pid:"ph1",time:"3–4 Wo", phase:7},
+  "Projekt H2 — Multi-Camera Security System":{pid:"ph2",time:"4–6 Wo",phase:7},
+  "Projekt 8 — RAG Document QA":             {pid:"p8", time:"2 Wo",   phase:4},
+  "Projekt 9 — Chat with CSV":               {pid:"p9", time:"1 Wo",   phase:4},
+  "Projekt 10 — AI Safety Evaluator":        {pid:"p10",time:"3 Wo",   phase:4},
+  "Projekt 11 — Research Agent":             {pid:"p11",time:"3 Wo",   phase:5},
+  "Projekt 12 — Open Source Contribution":   {pid:"p12",time:"variabel",phase:5},
+  "Projekt 13 — Techblog (3–5 Artikel)":     {pid:"p13",time:"laufend",phase:5},
+  "Hauptprojekt — Ölpreis System":           {pid:"pm1",time:"6–8 Wo", phase:6},
+  "AI Safety & Evaluation Platform":         {pid:"pm2",time:"4–6 Wo", phase:6}
+};
+
+function loadSaved(){try{return JSON.parse(localStorage.getItem('roadmap-v5')||'{}')}catch(e){return{}}}
+function saveSaved(s){try{localStorage.setItem('roadmap-v5',JSON.stringify(s))}catch(e){}}
+
+function initProgress(){
+  const saved=loadSaved();
+  document.querySelectorAll('.skill[data-id]').forEach(el=>{
+    const id=el.dataset.id;
+    if(SKILLS_TIME[id]){const tb=document.createElement('span');tb.className='time-b';tb.textContent=SKILLS_TIME[id];el.appendChild(tb);}
+    const state=saved['s_'+id]||'todo';
+    el.dataset.state=state;
+    const dot=document.createElement('span');
+    dot.className='skill-dot';
+    dot.textContent=state==='done'?'●':state==='active'?'◑':'○';
+    dot.title='Klick: Offen → In Arbeit → Fertig';
+    dot.onclick=e=>{e.stopPropagation();cycleSkill(id,el,dot,saved)};
+    el.appendChild(dot);
+  });
+  document.querySelectorAll('.pc').forEach(card=>{
+    const titleEl=card.querySelector('.pt');if(!titleEl)return;
+    const title=titleEl.childNodes[0].textContent.trim();
+    const d=PROJ_DATA[title];if(!d)return;
+    const tb=document.createElement('span');tb.className='proj-time';tb.textContent=d.time;titleEl.appendChild(tb);
+    const state=saved['p_'+d.pid]||'todo';
+    const btn=document.createElement('button');
+    btn.className='proj-status'+(state==='active'?' ps-active':state==='done'?' ps-done':'');
+    btn.innerHTML=state==='done'?'● Fertig':state==='active'?'◑ In Arbeit':'○ Offen';
+    btn.onclick=()=>cycleProj(d.pid,btn,saved);
+    card.insertBefore(btn,card.querySelector('.detail-btn')||null);
+  });
+  updateDash(saved);
+}
+
+function cycleSkill(id,el,dot,saved){
+  const cur=el.dataset.state||'todo';
+  const next=cur==='todo'?'active':cur==='active'?'done':'todo';
+  el.dataset.state=next;dot.textContent=next==='done'?'●':next==='active'?'◑':'○';
+  saved['s_'+id]=next;saveSaved(saved);updateDash(saved);
+}
+function cycleProj(pid,btn,saved){
+  const cur=saved['p_'+pid]||'todo';
+  const next=cur==='todo'?'active':cur==='active'?'done':'todo';
+  saved['p_'+pid]=next;
+  btn.className='proj-status'+(next==='active'?' ps-active':next==='done'?' ps-done':'');
+  btn.innerHTML=next==='done'?'● Fertig':next==='active'?'◑ In Arbeit':'○ Offen';
+  saveSaved(saved);updateDash(saved);
+}
+function updateDash(saved){
+  for(let ph=1;ph<=7;ph++){
+    const ids=Object.entries(SKILL_PHASE).filter(([,p])=>p===ph).map(([id])=>id);
+    const done=ids.filter(id=>saved['s_'+id]==='done').length;
+    const f=document.getElementById('ph'+ph+'-fill'),c=document.getElementById('ph'+ph+'-cnt');
+    if(f)f.style.width=ids.length?Math.round(done/ids.length*100)+'%':'0%';
+    if(c)c.textContent=done+'/'+ids.length+' Skills';
+  }
+  const allP=Object.values(PROJ_DATA);
+  const pdone=allP.filter(d=>saved['p_'+d.pid]==='done').length;
+  const pc=document.getElementById('proj-cnt');if(pc)pc.textContent=pdone+'/'+allP.length+' Projekte';
+  const allS=Object.keys(SKILL_PHASE).length;
+  const sdone=Object.keys(SKILL_PHASE).filter(id=>saved['s_'+id]==='done').length;
+  const pct=Math.round((sdone+pdone)/(allS+allP.length)*100)||0;
+  const tf=document.getElementById('total-fill'),tp=document.getElementById('total-pct');
+  if(tf)tf.style.width=pct+'%';if(tp)tp.textContent=pct+'%';
+}
+
+let activeEl=null;
+function showPop(id,el){
+  if(activeEl===el){closePopFull();return;}
+  if(activeEl)activeEl.classList.remove('active');
+  activeEl=el;el.classList.add('active');
+  const d=DATA[id];if(!d)return;
+  document.getElementById('gpop-title').textContent=d.title;
+  document.getElementById('gpop-desc').textContent=d.desc;
+  const linksEl=document.getElementById('gpop-links');linksEl.innerHTML='';
+  d.links.forEach(l=>{const a=document.createElement('a');a.href=l.h;a.target='_blank';a.className=l.c;a.textContent=l.t;linksEl.appendChild(a);});
+  const noteEl=document.getElementById('gpop-note');
+  if(d.note){noteEl.textContent=d.note;noteEl.style.display='block';}else{noteEl.style.display='none';}
+  document.getElementById('gpop').classList.add('show');
+  requestAnimationFrame(()=>positionPop(el));
+}
+function positionPop(el){
+  const pop=document.getElementById('gpop');if(!pop.classList.contains('show'))return;
+  const r=el.getBoundingClientRect(),pw=300,ph=pop.offsetHeight,vw=window.innerWidth,vh=window.innerHeight,gap=8,m=10;
+  let left=r.left,top=r.bottom+gap;
+  if(left+pw>vw-m)left=Math.max(m,vw-pw-m);
+  if(top+ph>vh-m)top=Math.max(m,r.top-ph-gap);
+  pop.style.left=left+'px';pop.style.top=top+'px';
+}
+function closePopFull(){
+  document.getElementById('gpop').classList.remove('show');
+  if(activeEl){activeEl.classList.remove('active');activeEl=null;}
+}
+document.getElementById('gpop-close').onclick=closePopFull;
+document.addEventListener('click',e=>{if(!document.getElementById('gpop').contains(e.target)&&!e.target.closest('.skill'))closePopFull();});
+window.addEventListener('scroll',()=>{if(activeEl)requestAnimationFrame(()=>positionPop(activeEl));},{passive:true});
+window.addEventListener('resize',()=>{if(activeEl)requestAnimationFrame(()=>positionPop(activeEl));});
+document.addEventListener('DOMContentLoaded',initProgress);
+</script>
+</body>
+</html>
